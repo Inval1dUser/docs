@@ -1,35 +1,5 @@
----
-Title: 'References'
-Description: 'A reference variable is an alias for another object. It is created using the & sign. Two things to note: Anything done to the reference also happens to the original and aliases cannot be changed to alias something else.'
-Subjects:
-  - 'Computer Science'
-  - 'Game Development'
-Tags:
-  - 'References'
-  - 'Pointers'
-  - 'Parameters'
-  - 'Memory'
-CatalogContent:
-  - 'learn-c-plus-plus'
-  - 'paths/computer-science'
----
-
-A **reference** variable is an alias for another object. It is created using the `&` sign.
-
-Two things to note:
-
-- Anything done to the reference also happens to the original.
-- Aliases cannot be changed to alias something else.
-
-## Syntax
-
-```pseudo
-int &alias = varname;
-```
-
+# Functions
 ## Pass-By-Reference
-
-In C++, pass-by-reference refers to passing parameters to a function by using references.
 
 It allows the ability to:
 
@@ -37,11 +7,11 @@ It allows the ability to:
 - Avoid making copies of a variable/object for performance reasons.
 
 ```cpp
-
-void swap_num(int &i, int &j) {
-  int temp = i;
-  i = j;
-  j = temp;
+//a and b will be changed by the pass-by-reference
+void swap_num(int &i, int &j) { //i = a, j = b
+  int temp = i; //a = 100, temp = a, temp is now equal to 100
+  i = j; //b = 200, a = b, a is now equal to 200
+  j = temp; //temp = 100, b = temp, b is now equal to 100
 }
 
 int main() {
@@ -50,19 +20,22 @@ int main() {
 
   swap_num(a, b);
 
-  std::cout << "A is " << a << "\n";
-  std::cout << "B is " << b << "\n";
+  cout << "A is " << a << "\n"; //Output: A is 200
+  cout << "B is " << b << "\n"; //Output: B is 100
 }
 ```
+## Pass-By-Value
 
-## `const` Reference
-
-In C++, pass-by-reference with `const` can be used for a function where the parameter(s) won’t change inside the function.
-
-This saves the computational cost of making a copy of the argument.
+A method of passing arguments to a function where the value of the argument is passed. Changes made to the argument inside the function will not affect the original value.
 
 ```cpp
-int triple(int const &i) {
-  return i * 3;
+void increment(int a) { //a is not being changed by the pass-by-value
+   a++; //a increases by 1
+}
+
+int main() {
+   int x = 10;
+   increment(x);
+   cout << x; // Output: 10
 }
 ```
